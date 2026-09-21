@@ -1,8 +1,6 @@
-"""Entry point that runs the analyzer from the repository root."""
+"""Entry point that opens the graphical interface from the repository root."""
 
-import sys
-
-from sensor_monitor.cli import main
+from sensor_monitor.dashboard import main
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
