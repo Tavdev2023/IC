@@ -7,12 +7,12 @@ from typing import Optional
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
-from sensor_monitor.analyzer import analyze_measurements
-from sensor_monitor.csv_input import read_measurements
-from sensor_monitor.models import Measurement
-from sensor_monitor.plotting import draw_dashboard
-from sensor_monitor.report import summary_text
-from sensor_monitor.simulator import generate_transformer_measurements
+from .analyzer import analyze_measurements
+from .csv_input import read_measurements
+from .models import Measurement
+from .plotting import draw_dashboard
+from .report import summary_text
+from .simulator import generate_transformer_measurements
 
 
 class TransformerDashboard:
