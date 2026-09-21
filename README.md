@@ -12,11 +12,10 @@ O projeto faz parte do processo seletivo do LAIIC/UFJF e usa como cenário a tem
 
 ## Como executar
 
-Requer Python 3.10 ou superior. Na raiz do repositório, no PowerShell:
+Requer Python 3.10 ou superior. Execute os comandos **na raiz do repositório** (é dela que o Python encontra o pacote `sensor_monitor`), no PowerShell:
 
 ```powershell
 py -m pip install -r requirements.txt        # só a interface gráfica precisa (matplotlib)
-$env:PYTHONPATH = "src/python"
 ```
 
 **Terminal.** O limite é obrigatório (`--threshold`). Sem `--input`, usa-se o simulador.
@@ -55,7 +54,7 @@ timestamp,value
 10:10,
 ```
 
-**Testes** (não precisam de `PYTHONPATH`; qualquer um dos comandos abaixo, a partir da raiz):
+**Testes** (qualquer um dos comandos abaixo, a partir da raiz):
 
 ```powershell
 py -m unittest -v
@@ -65,7 +64,7 @@ py -m unittest discover -s tests -v
 ## Como a solução foi organizada
 
 ```text
-src/python/sensor_monitor/
+sensor_monitor/
   models.py      Measurement (com a regra de validade), SuddenChange, AnalysisResult
   analyzer.py    regra do briefing: contagem, estatísticas e mudanças bruscas
   csv_input.py   leitura de CSV (arquivo ou entrada padrão)
@@ -77,10 +76,9 @@ src/python/sensor_monitor/
 tests/           testes automatizados (unittest)
 examples/        exemplo_briefing.csv
 cpp/             adaptador C++ opcional (ver abaixo)
-pyproject.toml   configura o Pylance/Pyright (extraPaths) para reconhecer sensor_monitor no editor; não afeta a execução
 ```
 
-A lógica de análise ([analyzer.py](src/python/sensor_monitor/analyzer.py)) não conhece a origem dos dados nem a apresentação. Simulador, CSV, terminal e interface gráfica dependem dela, e não o contrário. Assim, o simulador pode ser trocado por uma fonte real sem alterar a análise.
+A lógica de análise ([analyzer.py](sensor_monitor/analyzer.py)) não conhece a origem dos dados nem a apresentação. Simulador, CSV, terminal e interface gráfica dependem dela, e não o contrário. Assim, o simulador pode ser trocado por uma fonte real sem alterar a análise.
 
 O limite é uma **diferença** entre leituras consecutivas, não uma temperatura máxima. Um limite negativo, `NaN` ou infinito é rejeitado. Uma mudança brusca indica um evento que merece investigação e não declara falha do equipamento.
 
