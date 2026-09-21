@@ -55,9 +55,10 @@ timestamp,value
 10:10,
 ```
 
-**Testes** (não precisam de `PYTHONPATH`):
+**Testes** (não precisam de `PYTHONPATH`; qualquer um dos comandos abaixo, a partir da raiz):
 
 ```powershell
+py -m unittest -v
 py -m unittest discover -s tests -v
 ```
 
@@ -76,6 +77,7 @@ src/python/sensor_monitor/
 tests/           testes automatizados (unittest)
 examples/        exemplo_briefing.csv
 cpp/             adaptador C++ opcional (ver abaixo)
+pyproject.toml   configura o Pylance/Pyright (extraPaths) para reconhecer sensor_monitor no editor; não afeta a execução
 ```
 
 A lógica de análise ([analyzer.py](src/python/sensor_monitor/analyzer.py)) não conhece a origem dos dados nem a apresentação. Simulador, CSV, terminal e interface gráfica dependem dela, e não o contrário. Assim, o simulador pode ser trocado por uma fonte real sem alterar a análise.
