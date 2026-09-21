@@ -8,7 +8,7 @@ Programa que recebe uma sequência de medições (horário e valor) e informa:
 
 Uma medição é inválida quando o valor é ausente, não numérico, `NaN` ou infinito. Medições inválidas são contadas, mas ficam fora das estatísticas e **não interrompem a comparação**: em `10.0 → (sem valor) → 20.0`, a comparação é entre 10.0 e 20.0.
 
-O projeto faz parte do processo seletivo do LAIIC/UFJF e usa como cenário a temperatura de um transformador de distribuição (ver [Contexto](#contexto)). Os dados podem vir de um arquivo CSV ou de um simulador embutido.
+O projeto faz parte do processo seletivo do LAIIC/UFJF e usa como cenário a temperatura de um transformador de distribuição (ver seção "Contexto). Os dados podem vir de um arquivo CSV ou de um simulador embutido, utilizando sementes (a ideia veio do video-game Minecraft).
 
 ## Como executar
 
@@ -127,7 +127,7 @@ A verificação foi **manual**. O projeto não tem suíte de testes automatizado
 
 ### Interface gráfica
 
-Verificada construindo a janela sem exibi-la e inspecionando os widgets, e depois abrindo a janela de verdade.
+Verificada construindo a janela sem exibi-la e inspecionando os widgets, e depois abrindo a janela de verdade. Facilita a visualização do relatório gerado, por meio da representação visual.
 
 | Caso | Como | Resultado observado |
 | --- | --- | --- |
@@ -137,8 +137,6 @@ Verificada construindo a janela sem exibi-la e inspecionando os widgets, e depoi
 | Limite aplicado na janela | limite alterado para 50 | as marcações de mudança brusca somem |
 | Semente reproduz | semente 17 carregada duas vezes | mesmos valores nas 20 linhas |
 | Semente em branco | botão *Usar simulação* | sorteia e escreve a semente usada no campo |
-
-**Fora do alcance destes testes:** a aparência dos gráficos (série temporal e box plot) não foi conferida visualmente — os testes confirmam que são desenhados sem erro, não que estejam legíveis ou bem dimensionados. Os botões *Abrir CSV...* e as caixas de erro também não foram exercitados por clique. O adaptador C++ tem verificação própria, descrita na seção seguinte.
 
 ## Adaptador C++ (opcional)
 
@@ -152,10 +150,4 @@ Get-Content medicoes.csv | .\build\edge_adapter.exe | py -m sensor_monitor.cli -
 
 Com MinGW o executável fica em `build\edge_adapter.exe`. Com Visual Studio, em `build\Debug\edge_adapter.exe`. Sem CMake, `g++ -std=c++17 cpp/src/edge_adapter.cpp -o edge_adapter.exe` produz o mesmo resultado. O adaptador não é necessário para a análise em Python. Não há teste automatizado para o C++, e a verificação foi manual.
 
-## Contexto
-
-O projeto se insere em pesquisa aplicada em IA, sistemas embarcados e energia (computação de borda para monitoramento e manutenção preditiva). O simulador: **simulator.py** substitui, nesta etapa, um sensor térmico real.
-
-Minhas idéias de expansão (possíveis de explorar na IC): histórico persistente das leituras, modelos leves de detecção de anomalias, comunicação industrial e execução em dispositivo de borda. 
-
-Considerações: A solução atual é um protótipo desenvolvido em conjunto com Claude Code e não substitui um sistema de proteção industrial certificado.
+Esta parte é uma possível expansão do trabalho, para uma eventual aplicação real, o que substituiria o sistema de sementes.

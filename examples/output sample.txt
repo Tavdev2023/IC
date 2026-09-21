@@ -1,0 +1,21 @@
+**Análise das medições simuladas**
+
+Medições válidas: 19
+Medições inválidas: 1
+____________________________________________________________
+1 | 10:50 -> 10:55: 67.00 °C | diferença absoluta: x
+2 | 10:55 -> 11:00: 68.00 °C | diferença absoluta: x
+3 | 11:05 -> 11:10: sem dados
+4 | 11:10 -> 11:15: 89.00 °C
+[...]
+19 | 
+
+____________________________________________________________
+**Resumo**
+
+Valor mínimo: 67.00
+Valor máximo: 101.50
+Valor médio: 72.77
+Mudanças bruscas: 2
+
+Diagnóstico: 
